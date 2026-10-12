@@ -12,7 +12,6 @@ public class Collectible : MonoBehaviour
         if (other.tag == "Player")
         {
             Destroy(this.gameObject);
-            player.ScoreUpdate();
 
         }
     }

@@ -4,23 +4,25 @@ using UnityEngine;
 public class EnemyPathFinding : MonoBehaviour
 {
 
-    [SerializeField] private Transform target;
+    private Transform target;
     private Rigidbody2D rb;
     private Vector2 moveDir;
     [SerializeField] private float speed;
     [SerializeField] private int strength;
-    public int scoreValue;
+    [SerializeField] public GameObject player;
     private Animator anim;
+    [SerializeField] private int damage;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Start()
     {
-        //target = GameObject.Find("Player").transform;
+        target = GameObject.Find("Player").transform;
     }
 
     void Update()
@@ -58,6 +60,8 @@ public class EnemyPathFinding : MonoBehaviour
         if (strength == 0)
         {
             Destroy(this.gameObject);
+            player.SendMessage("ScoreUpdate", SendMessageOptions.DontRequireReceiver);
         }
     }
+    
 }

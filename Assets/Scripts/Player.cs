@@ -1,22 +1,24 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private UIManager ui;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private EnemyPathFinding enemy;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private Vector2 lastMovement = new Vector2(0, -1);
     private Animator animator;
-    private int maxHealth = 10;
+    private int maxHealth = 50;
     private int currentHealth;
-    private bool canFireSpecial = false;
+    private bool hasBombs = true;
+    private int bombs = 3;
     private int score;
-    private int hiScore = 1000;
+    [SerializeField] int hiScore;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
         score = 0;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        hiScore = 1000;
 
     }
 
@@ -64,10 +67,33 @@ public class Player : MonoBehaviour
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
     }
+    
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "GreenZombie")
+        {
+            TakeDamage(1);
+        }
+        else if (other.gameObject.tag == "PinkZombie")
+        {
+            TakeDamage(2);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth--;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth == 0)
+        {
+            SceneManager.LoadScene("game");
+        }
+    }
 
     public void ScoreUpdate()
     {
-        score += enemy.scoreValue;
+        score += 100;
         ui.SetScore(score);
         if (score > hiScore)
         {
