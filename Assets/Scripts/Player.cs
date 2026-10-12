@@ -5,14 +5,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private UIManager ui;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private EnemyPathFinding enemy;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    
     private Vector2 lastMovement = new Vector2(0, -1);
     private Animator animator;
-    private int health = 10;
-    private int maxHealth;
+    private int maxHealth = 10;
+    private int currentHealth;
     private bool canFireSpecial = false;
     private int score;
     private int hiScore = 1000;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
         rb =  GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         score = 0;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
     }
 
@@ -64,7 +67,7 @@ public class Player : MonoBehaviour
 
     public void ScoreUpdate()
     {
-        score += 100;
+        score += enemy.scoreValue;
         ui.SetScore(score);
         if (score > hiScore)
         {

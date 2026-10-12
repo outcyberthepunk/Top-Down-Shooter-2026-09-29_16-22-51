@@ -11,11 +11,11 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int score)
     {
-        scoreText.SetText("Score " + score.ToString("0000"));
+        scoreText.SetText("Score " + score.ToString("000000"));
     }
 
     public void SetHiScore(int hiScore)
     {
-        hiScoreText.SetText("HI " + hiScore.ToString("0000"));
+        hiScoreText.SetText("HI " + hiScore.ToString("000000"));
     }
 }

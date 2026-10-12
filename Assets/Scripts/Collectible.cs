@@ -6,11 +6,6 @@ public class Collectible : MonoBehaviour
     [SerializeField] private Player player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        player = GetComponent<Player>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,6 +13,7 @@ public class Collectible : MonoBehaviour
         {
             Destroy(this.gameObject);
             player.ScoreUpdate();
+
         }
     }
 }
