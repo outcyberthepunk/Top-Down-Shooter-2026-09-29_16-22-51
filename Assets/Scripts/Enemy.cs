@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyPathFinding : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 
     private Transform target;
@@ -9,20 +9,21 @@ public class EnemyPathFinding : MonoBehaviour
     private Vector2 moveDir;
     [SerializeField] private float speed;
     [SerializeField] private int strength;
-    [SerializeField] public GameObject player;
+    public ScoreHandler scoreHandler;
     private Animator anim;
     [SerializeField] private int damage;
+    public String tagOfEnemyKilled;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Start()
     {
         target = GameObject.Find("Player").transform;
+        scoreHandler = FindObjectsByType<ScoreHandler>()[0];
     }
 
     void Update()
@@ -60,7 +61,11 @@ public class EnemyPathFinding : MonoBehaviour
         if (strength == 0)
         {
             Destroy(this.gameObject);
-            player.SendMessage("ScoreUpdate", SendMessageOptions.DontRequireReceiver);
+            tagOfEnemyKilled = this.gameObject.tag;
+            Debug.Log(tagOfEnemyKilled);
+            scoreHandler.ScoreUpdate(tagOfEnemyKilled);
+            Debug.Log("ScoreUpdate has been called");
+            
         }
     }
     

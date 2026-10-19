@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
-    [SerializeField] private UIManager ui;
     [SerializeField] private HealthBar healthBar;
+    public GameManager gm;
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -17,8 +17,9 @@ public class Player : MonoBehaviour
     private int currentHealth;
     private bool hasBombs = true;
     private int bombs = 3;
-    private int score;
-    [SerializeField] int hiScore;
+    private Enemy enemy;
+    public AudioSource audio;
+    public AudioClip shootSFX;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,10 +27,9 @@ public class Player : MonoBehaviour
     {
         rb =  GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        score = 0;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        hiScore = 1000;
+        audio = GetComponent<AudioSource>();
 
     }
 
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
             GameObject proj = Instantiate(bullet, transform.position, Quaternion.identity);
             Projectile sb = proj.GetComponent<Projectile>();
             sb.Shoot(new Vector2((lastMovement.x), lastMovement.y), 300);
+            audio.PlayOneShot(shootSFX);
+            
         }
     }
     
@@ -73,11 +75,11 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "GreenZombie")
         {
-            TakeDamage(1);
+            TakeDamage(5);
         }
         else if (other.gameObject.tag == "PinkZombie")
         {
-            TakeDamage(2);
+            TakeDamage(10);
         }
     }
 
@@ -87,18 +89,30 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if (currentHealth == 0)
         {
-            SceneManager.LoadScene("game");
+            Destroy(this.gameObject);
+            gm.SendMessage("GameOverScreen", SendMessageOptions.DontRequireReceiver);
         }
     }
 
-    public void ScoreUpdate()
+    public void Heal(int restoredHealth)
     {
-        score += 100;
-        ui.SetScore(score);
-        if (score > hiScore)
+        currentHealth += restoredHealth;
+        healthBar.SetHealth(currentHealth);
+    }
+
+    public void SpeedBoost()
+    {
+        float newSpeed;
+        float duration = 10f;
+        float count = 0f;
+        while (count < duration)
         {
-            ui.SetHiScore(score);
+            newSpeed = speed * 5;
+            Debug.Log("Speed Boost Active");
+            rb.linearVelocity = movement * newSpeed;
+            count += Time.deltaTime;
         }
-       
+
+        speed = 5f;
     }
 }

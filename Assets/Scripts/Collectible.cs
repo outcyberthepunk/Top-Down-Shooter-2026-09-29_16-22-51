@@ -12,6 +12,15 @@ public class Collectible : MonoBehaviour
         if (other.tag == "Player")
         {
             Destroy(this.gameObject);
+            if (this.tag == "Lily")
+            {
+                player.SpeedBoost();
+            }
+
+            if (this.tag == "Poppy")
+            {
+                player.Heal(10);
+            }
 
         }
     }
