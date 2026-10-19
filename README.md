@@ -10,7 +10,9 @@ Zombies have different strength and scoring based on their colour (pink are stro
 
 ## References & Credits
 Brackeys - Health Bar
+
 CHOMP CHOMP Games - Enemy Follow AI
+
 Game Code Library - 8-Directional Movement
 
 
