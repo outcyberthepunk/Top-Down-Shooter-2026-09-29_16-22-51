@@ -4,7 +4,9 @@ Your peaceful garden is being ransacked by zombies! Thankfully you can shoot sta
 ## Controls
 WASD or Arrow Keys: Move
 E: Shoot
-Poppies heal, Lilies give a speed boost. Zombies have different strength and scoring based on their colour (pink are stronger but give more points)
+
+Poppies heal, Lilies give a speed boost. 
+Zombies have different strength and scoring based on their colour (pink are stronger but give more points)
 
 ## References & Credits
 Brackeys - Health Bar
