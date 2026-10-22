@@ -7,6 +7,8 @@ using UnityEngine;
         private float timeToLive = 5f;
         private float countdown;
         private bool hasFired = false;
+        public AudioSource bombExplosion;
+        private AudioClip bombExplosionClip;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -35,5 +37,9 @@ using UnityEngine;
         private void OnCollisionEnter2D(Collision2D other)
         {
             Destroy(this.gameObject);
+            if (this.gameObject.tag.Equals("Bomb"))
+            {
+                bombExplosion.PlayOneShot(bombExplosionClip);
+            }
         }
     }

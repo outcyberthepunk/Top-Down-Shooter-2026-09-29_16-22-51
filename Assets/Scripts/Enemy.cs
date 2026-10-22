@@ -48,10 +48,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-         if (collision.gameObject.tag == "PlayerProjectile")
+         if (collision.gameObject.tag.Equals("PlayerProjectile"))
          {
              rb.linearVelocity = Vector2.zero;
              Hit();
+         }
+
+         if (collision.gameObject.tag.Equals("Bomb"))
+         {
+             Destroy(this.gameObject);
          }
     }
 

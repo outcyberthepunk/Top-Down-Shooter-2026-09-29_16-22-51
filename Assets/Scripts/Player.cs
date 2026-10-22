@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bomb;
     [SerializeField] private HealthBar healthBar;
     public GameManager gm;
     public float speed = 5f;
@@ -42,7 +43,22 @@ public class Player : MonoBehaviour
             Projectile sb = proj.GetComponent<Projectile>();
             sb.Shoot(new Vector2((lastMovement.x), lastMovement.y), 300);
             audio.PlayOneShot(shootSFX);
-            
+        }
+
+        if (hasBombs)
+        {
+            if (InputSystem.actions["Special"].IsPressed())
+            {
+                InputSystem.actions["Special"].Reset();
+                GameObject proj = Instantiate(bomb, transform.position, Quaternion.identity);
+                Projectile b = proj.GetComponent<Projectile>();
+                b.Shoot(new Vector2(lastMovement.x, lastMovement.y), 300);
+                bombs--;
+                if (bombs == 0)
+                {
+                    hasBombs = false;
+                }
+            }
         }
     }
     

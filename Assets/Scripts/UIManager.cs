@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text hiScoreText;
-    
 
+    
     public void SetScore(int score)
     {
         scoreText.SetText("Score " + score.ToString("000000"));

@@ -9,6 +9,7 @@ TagManager:
   - PinkZombie
   - Lily
   - Poppy
+  - Bomb
   layers:
   - Default
   - TransparentFX

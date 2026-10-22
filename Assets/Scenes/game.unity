@@ -1899,54 +1899,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561627515}
   m_CullTransparentMesh: 1
---- !u!1 &597764950
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 597764952}
-  - component: {fileID: 597764951}
-  m_Layer: 0
-  m_Name: Spawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &597764951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597764950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdaa4a6f9d862481ebadb48cede71176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  objects:
-  - {fileID: 2558518621457397142, guid: 9bf0a67f81cb99a0ab989e45fb525cb8, type: 3}
-  - {fileID: 6115752836525906475, guid: ec0cbb4ee6c6f32729a95e79677c6b3a, type: 3}
-  scoreHandler: {fileID: 0}
---- !u!4 &597764952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 597764950}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.01, y: 11.65, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   bullet: {fileID: 4101566812783765165, guid: 8ecfae27929e98e60abbd308ed1b1f31, type: 3}
+  bomb: {fileID: 7115695588930005142, guid: d924d80106fbadeee91c63d139906935, type: 3}
   healthBar: {fileID: 497520281}
   gm: {fileID: 1191551285}
   speed: 5
@@ -3748,7 +3701,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ba21c149951eec103bf456b45bc52087, type: 2}
+  - {fileID: 2100000, guid: ebc2bf81e5ae7f08e8660b07fa6b057c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15331,7 +15284,7 @@ Transform:
   m_GameObject: {fileID: 1416686205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 2, z: 0}
+  m_LocalPosition: {x: -0.068, y: 1.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16101,7 +16054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreHandler
   score: 0
-  hiScore: 0
+  hiScore: 1000
   hiScoreBeaten: 0
   ui: {fileID: 850423190}
   enemy: {fileID: 0}
@@ -16664,7 +16617,6 @@ SceneRoots:
   - {fileID: 206628067}
   - {fileID: 910123242}
   - {fileID: 1416686207}
-  - {fileID: 597764952}
   - {fileID: 8238394209201397010}
   - {fileID: 1537563032}
   - {fileID: 1778193595}
