@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] objects;
-    private float spawnCooldown = 3.5f;
+    private float spawnCooldown = 2f;
     private float countdown;
     private float gameTime;
     public ScoreHandler scoreHandler;
