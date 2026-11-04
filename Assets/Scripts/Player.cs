@@ -17,10 +17,11 @@ public class Player : MonoBehaviour
     private int maxHealth = 50;
     private int currentHealth;
     private bool hasBombs = true;
-    private int bombs = 3;
+    private int bombs = 5;
     private Enemy enemy;
     public AudioSource audio;
     public AudioClip shootSFX;
+    public UIManager ui;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
                 Projectile b = proj.GetComponent<Projectile>();
                 b.Shoot(new Vector2(lastMovement.x, lastMovement.y), 300);
                 bombs--;
+                ui.setBombs(bombs);
                 if (bombs == 0)
                 {
                     hasBombs = false;

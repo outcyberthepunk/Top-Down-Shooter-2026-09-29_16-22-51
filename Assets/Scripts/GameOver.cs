@@ -26,11 +26,6 @@ public class GameOver : MonoBehaviour
       Time.timeScale = 0;
       gameObject.SetActive(true);
       finalScoreText.text = "Final Score: " + finalScore.ToString();
-      if (scoreHandler.hiScoreBeaten)
-      {
-         newRecordText.enabled = true;
-         audio.PlayOneShot(audioClip);
-      }
    }
 
    public void Restart()

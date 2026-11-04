@@ -3,8 +3,6 @@ using UnityEngine;
 public class ScoreHandler : MonoBehaviour
 {
     public int score;
-    public int hiScore = 1000;
-    public bool hiScoreBeaten = false;
     public UIManager ui;
     [SerializeField] private Enemy enemy;
     //private string lastEnemyKilled;
@@ -32,11 +30,6 @@ public class ScoreHandler : MonoBehaviour
             score += 200;
             ui.SetScore(score);
             Debug.Log(score);
-        }
-        if (score > hiScore)
-        {
-            hiScoreBeaten = true;
-            ui.SetHiScore(score);
         }
        
     }

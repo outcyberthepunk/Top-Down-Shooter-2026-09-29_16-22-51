@@ -57,6 +57,8 @@ public class Enemy : MonoBehaviour
          if (collision.gameObject.tag.Equals("Bomb"))
          {
              Destroy(this.gameObject);
+             tagOfEnemyKilled = this.gameObject.tag;
+             scoreHandler.ScoreUpdate(tagOfEnemyKilled);
          }
     }
 
