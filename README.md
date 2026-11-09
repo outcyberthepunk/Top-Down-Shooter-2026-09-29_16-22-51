@@ -10,7 +10,7 @@ R: Deploy Bomb
 
 You have an infinite number of bullets, but only a limited amount of bombs
 
-Poppies heal, Lilies give a speed boost. 
+Poppies heal you, but there are only a few around the map 
 
 Zombies have different strength and scoring based on their colour (pink are stronger but give more points)
 
